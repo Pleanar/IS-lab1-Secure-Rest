@@ -1,0 +1,37 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      JAR_FILE: ${{ secrets.JAR_FILE }}
+      DOCKER_SPRING_PORTS: ${{ secrets.DOCKER_SPRING_PORTS }}
+      DOCKER_SPRING_DEBUG_PORTS: ${{ secrets.DOCKER_SPRING_DEBUG_PORTS }}
+      DOCKER_SPRING_DATASOURCE_URL: ${{ secrets.DOCKER_SPRING_DATASOURCE_URL }}
+      SPRING_SERVER_PORT: ${{ secrets.SPRING_SERVER_PORT }}
+      SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
+      SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
+      SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      JWT_EXPIRATION: ${{ secrets.JWT_EXPIRATION }}
+      JWT_REFRESH: ${{ secrets.JWT_REFRESH }}
+      DOCKER_POSTGRES_PORTS: ${{ secrets.DOCKER_POSTGRES_PORTS }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      OSS_USERNAME: ${{ secrets.OSS_USERNAME }}
+      OSS_API_TOKEN: ${{ secrets.OSS_API_TOKEN }}
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build and Test
+      run: mvn clean verify

@@ -1,0 +1,33 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        JAR_FILE: ${JAR_FILE}
+    ports:
+      - ${DOCKER_SPRING_PORTS}
+      - ${DOCKER_SPRING_DEBUG_PORTS}
+    environment:
+      SPRING_SERVER_PORT: ${SPRING_SERVER_PORT}
+      SPRING_DATASOURCE_URL: ${DOCKER_SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION: ${JWT_EXPIRATION}
+      JWT_REFRESH: ${JWT_REFRESH}
+    depends_on:
+      - db
+
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - ${DOCKER_POSTGRES_PORTS}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
