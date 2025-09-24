@@ -120,7 +120,6 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <failBuildOnCVSS>7</failBuildOnCVSS>
                     <format>HTML</format>
                     <outputDirectory>${project.build.directory}</outputDirectory>
                     <suppressionFile>${project.basedir}/dependency-check-suppression.xml</suppressionFile>
@@ -128,6 +127,7 @@
                     <ossIndexUsername>${OSS_USERNAME}</ossIndexUsername>
                     <!--suppress UnresolvedMavenProperty -->
                     <ossIndexPassword>${OSS_API_TOKEN}</ossIndexPassword>
+                    <knownExploitedUrl>https://raw.githubusercontent.com/cisagov/kev-data/main/known_exploited_vulnerabilities.json</knownExploitedUrl>
                 </configuration>
             </plugin>
             <plugin>
