@@ -1,0 +1,37 @@
+<FindBugsFilter>
+    <!-- Spring manages initialization of these classes -->
+    <Match>
+        <Class name="itmo.srest.config.SecurityConfig"/>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+    <Match>
+        <Class name="itmo.srest.controller.AuthenticationController"/>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+    <Match>
+        <Class name="itmo.srest.controller.DataController"/>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+    <Match>
+        <Class name="itmo.srest.filter.JwtFilter"/>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+    <Match>
+        <Class name="itmo.srest.service.AuthenticationService"/>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+    <Match>
+        <Class name="itmo.srest.service.UserServiceImpl"/>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+
+    <!-- This class is not serialized, OneToMany field is transient and managed by Spring Data -->
+    <Match>
+        <Class name="itmo.srest.entity.User"/>
+        <Bug pattern="SE_NO_SERIALVERSIONID"/>
+    </Match>
+    <Match>
+        <Class name="itmo.srest.entity.User"/>
+        <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED"/>
+    </Match>
+</FindBugsFilter>
