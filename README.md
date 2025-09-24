@@ -16,7 +16,7 @@
 - Spring Security  
 - Spring Data + PostgreSQL  
 - JJWT (Java JWT библиотека)  
-- OWASP Dependency-Check + SpotBugs (для анализа безопасности и качества)
+- OWASP Dependency-Check + SpotBugs
 
 ---
 
